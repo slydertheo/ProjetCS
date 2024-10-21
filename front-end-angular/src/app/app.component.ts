@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { HelloService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  template: `<h1>{{ greeting }}</h1>`,
+  standalone: true
 })
-export class AppComponent {
-  title = 'front-end-angular';
+export class AppComponent implements OnInit {
+  greeting: string = '';
+
+  constructor(private helloService: HelloService) {}
+
+  ngOnInit() {
+    this.helloService.getGreetingMessage().subscribe((data) => {
+      this.greeting = data;
+    });
+  }
 }

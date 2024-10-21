@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/gangneux-maxime/Bureau/Projet_C#/Projet_C#.csproj": {}
+    "/home/gangneux-maxime/Bureau/ProjetCS/back-end-Cs/Projet_C#.csproj": {}
   },
   "projects": {
-    "/home/gangneux-maxime/Bureau/Projet_C#/Projet_C#.csproj": {
+    "/home/gangneux-maxime/Bureau/ProjetCS/back-end-Cs/Projet_C#.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/gangneux-maxime/Bureau/Projet_C#/Projet_C#.csproj",
+        "projectUniqueName": "/home/gangneux-maxime/Bureau/ProjetCS/back-end-Cs/Projet_C#.csproj",
         "projectName": "Projet_C#",
-        "projectPath": "/home/gangneux-maxime/Bureau/Projet_C#/Projet_C#.csproj",
+        "projectPath": "/home/gangneux-maxime/Bureau/ProjetCS/back-end-Cs/Projet_C#.csproj",
         "packagesPath": "/home/gangneux-maxime/.nuget/packages/",
-        "outputPath": "/home/gangneux-maxime/Bureau/Projet_C#/obj/",
+        "outputPath": "/home/gangneux-maxime/Bureau/ProjetCS/back-end-Cs/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/gangneux-maxime/.nuget/NuGet/NuGet.Config"
@@ -42,6 +42,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -54,6 +64,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
