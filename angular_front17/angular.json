@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular_17": {
+    "angular_front17": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular_17",
+            "outputPath": "dist/angular_front17",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular_17:build:production"
+              "buildTarget": "angular_front17:build:production"
             },
             "development": {
-              "buildTarget": "angular_17:build:development"
+              "buildTarget": "angular_front17:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "angular_17:build"
+            "buildTarget": "angular_front17:build"
           }
         },
         "test": {
@@ -98,6 +98,6 @@
     }
   },
   "cli": {
-    "analytics": "5b323a58-f7d8-4ba8-90b3-5b806f140a7f"
+    "analytics": "bbbab55d-2089-482d-98ae-be67e0c5f8ae"
   }
 }

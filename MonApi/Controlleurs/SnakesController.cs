@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MonApi.Models;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace MonApi.Controllers
 {
@@ -16,13 +15,13 @@ namespace MonApi.Controllers
         };
 
         [HttpGet]
-        public async Task<IActionResult> GetSnakes()
+        public IActionResult GetSnakes()
         {
             return Ok(snakes);
         }
 
         [HttpGet("print")]
-        public async Task<IActionResult> PrintSnakes()
+        public IActionResult PrintSnakes()
         {
             foreach (var snake in snakes)
             {

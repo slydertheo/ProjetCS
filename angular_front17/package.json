@@ -1,5 +1,5 @@
 {
-  "name": "angular-17",
+  "name": "angular-front17",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:angular_17": "node dist/angular_17/server/server.mjs"
+    "serve:ssr:angular_front17": "node dist/angular_front17/server/server.mjs"
   },
   "private": true,
   "dependencies": {
