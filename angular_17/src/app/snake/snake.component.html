@@ -1,0 +1,10 @@
+<div *ngIf="snakes.length > 0">
+  <div *ngFor="let snake of snakes">
+    <h2>{{ snake.name }}</h2>
+    <p>{{ snake.description }}</p>
+    <p>Length: {{ snake.length }}</p>
+  </div>
+</div>
+<div *ngIf="snakes.length === 0">
+  <p>No snakes available.</p>
+</div>
