@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq; 
 
-namespace main
+namespace Grid
 {
     public class PlayGrid
     {
@@ -10,11 +11,20 @@ namespace main
         public PlayGrid(int rows, int columns)
         {
             Grid = new List<List<int>>(rows);
-            for (int i = 0; i < rows; i++)
+
+            List<int> FirstRow = new List<int>(Enumerable.Repeat(9, columns));
+            Grid.Add(FirstRow);
+
+            for (int i = 0; i < rows - 2; i++)
             {
                 List<int> row = new List<int>(new int[columns]);
+                row[0] = 9;
+                row[columns - 1] = 9;
                 Grid.Add(row);
             }
+
+            List<int> LastRow = new List<int>(Enumerable.Repeat(9, columns));
+            Grid.Add(LastRow);
         }
 
         public List<List<int>> GetGrid()

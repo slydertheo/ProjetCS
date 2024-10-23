@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using main;
+using Grid;
 
 namespace MonApi
 {
@@ -8,7 +8,7 @@ namespace MonApi
     {
         public static void Main(string[] args)
         {
-            PlayGrid gameGrid = new PlayGrid(3, 3);
+            PlayGrid gameGrid = new PlayGrid(10, 10);
             gameGrid.PrintGrid();
             
             CreateHostBuilder(args).Build().Run();
