@@ -6,12 +6,12 @@ namespace MonApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class GameController : ControllerBase
+    public class gridController : ControllerBase
     {
         [HttpGet]
         public IActionResult GetGrid()
         {
-            PlayGrid gameGrid = new PlayGrid(10, 10);
+            PlayGrid gameGrid = new PlayGrid(30, 30);
             var gridData = gameGrid.GetGrid();
             return Ok(gridData); 
         }

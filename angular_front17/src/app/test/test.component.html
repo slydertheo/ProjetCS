@@ -1,11 +1,10 @@
-<div *ngIf="snakes.length > 0">
-    <h1>Liste des Serpents</h1>
-    <ul>
-      <li *ngFor="let snake of snakes">
-        <strong>ID:</strong> {{ snake.id }} - <strong>Nom:</strong> {{ snake.name }} - <strong>Habitat:</strong> {{ snake.habitat }}
-      </li>
-    </ul>
+<div class="grid-container">
+  <div class="grid">
+    <div *ngFor="let row of grid" class="grid-row">
+      <div *ngFor="let cell of row" class="grid-cell" 
+           [ngClass]="getCellClass(cell)">
+      </div>
+    </div>
   </div>
-  <div *ngIf="snakes.length === 0">
-    <p>Aucun serpent à afficher.</p>
-  </div>
+</div>
+

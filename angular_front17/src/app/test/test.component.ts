@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SnakeService } from '../snake.service';
-import { SnakeData } from '../Models/SnakeModel';
+import { GridService } from '../grid.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,31 +7,42 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css'],
-  imports:[
+  imports: [
     CommonModule,
   ]
 })
 export class TestComponent implements OnInit {
-  snakes: SnakeData[] = [] ;
+  grid: number[][] = [];
 
-  constructor(private snakeService: SnakeService) {}
+  constructor(private gridService: GridService) {}
 
   ngOnInit() {
-    this.getSnakes();
+    this.getGrid();
   }
 
-  getSnakes() {
-    this.snakeService.getSnakes().subscribe({
+  getGrid() {
+    this.gridService.getGrid().subscribe({
       next: (data) => {
-        this.snakes = data;
-        console.log(this.snakes);
+        this.grid = data;
+        console.log(this.grid);
       },
       error: (err) => {
-        console.error('Error fetching snakes:', err);
+        console.error('Error fetching grid:', err);
       },
       complete: () => {
-        console.log('Fetching snakes complete.');
+        console.log('Fetching grid complete.');
       }
-    });    
+    });
   }
+  
+  getCellClass(cell: number): string {
+    if (cell === 9) {
+      return 'textured-nine';
+    } else if (cell === 0) {
+      return 'textured-zero';
+    }
+    return '';
+  }
+  
 }
+

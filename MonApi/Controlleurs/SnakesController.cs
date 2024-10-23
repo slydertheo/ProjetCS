@@ -19,15 +19,5 @@ namespace MonApi.Controllers
         {
             return Ok(snakes);
         }
-
-        [HttpGet("print")]
-        public IActionResult PrintSnakes()
-        {
-            foreach (var snake in snakes)
-            {
-                Console.WriteLine($"Id: {snake.Id}, Name: {snake.Name}, Habitat: {snake.Habitat}");
-            }
-            return Ok("Snakes printed in console.");
-        }
     }
 }

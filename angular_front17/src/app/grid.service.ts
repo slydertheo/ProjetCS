@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class GameService {
-  private apiUrl = 'http://localhost:5002/api/Grid/grid';
+export class GridService {
+  private apiUrl = 'http://localhost:5002/api/grid';
 
   constructor(private http: HttpClient) {}
 
