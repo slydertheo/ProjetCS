@@ -482,19 +482,19 @@
     ]
   },
   "packageFolders": {
-    "/home/gangneux-maxime/.nuget/packages/": {}
+    "/home/freyburger/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/gangneux-maxime/Bureau/ProjetCS/MonApi/MonApi.csproj",
+      "projectUniqueName": "/home/freyburger/Bureau/ProjetCS/MonApi/MonApi.csproj",
       "projectName": "MonApi",
-      "projectPath": "/home/gangneux-maxime/Bureau/ProjetCS/MonApi/MonApi.csproj",
-      "packagesPath": "/home/gangneux-maxime/.nuget/packages/",
-      "outputPath": "/home/gangneux-maxime/Bureau/ProjetCS/MonApi/obj/",
+      "projectPath": "/home/freyburger/Bureau/ProjetCS/MonApi/MonApi.csproj",
+      "packagesPath": "/home/freyburger/.nuget/packages/",
+      "outputPath": "/home/freyburger/Bureau/ProjetCS/MonApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/gangneux-maxime/.nuget/NuGet/NuGet.Config"
+        "/home/freyburger/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -512,11 +512,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -551,7 +546,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/252/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
 
 namespace Grid
 {
@@ -30,6 +30,22 @@ namespace Grid
         public List<List<int>> GetGrid()
         {
             return Grid;
+        }
+
+        public void UpdateCell(int x, int y, int value)
+        {
+            Grid[y][x] = value; // Met à jour la valeur de la cellule à la position (x, y)
+        }
+
+        public void ClearGrid()
+        {
+            for (int i = 0; i < Grid.Count; i++)
+            {
+                for (int j = 0; j < Grid[i].Count; j++)
+                {
+                    Grid[i][j] = 0; // Réinitialise toutes les cellules à 0
+                }
+            }
         }
 
         public void PrintGrid()
