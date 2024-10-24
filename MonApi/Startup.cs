@@ -12,7 +12,7 @@ namespace MonApi
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
-                    builder => builder.AllowAnyOrigin()
+                    builder => builder.WithOrigins("http://localhost:4200") 
                                       .AllowAnyMethod()
                                       .AllowAnyHeader());
             });
@@ -40,3 +40,4 @@ namespace MonApi
         }
     }
 }
+

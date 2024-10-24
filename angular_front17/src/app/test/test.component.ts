@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { GridService } from '../grid.service';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-test',
   standalone: true,
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css'],
-  imports: [
-    CommonModule,
-  ]
+  imports: [CommonModule]
 })
 export class TestComponent implements OnInit {
   grid: number[][] = [];
 
-  constructor(private gridService: GridService) {}
+  constructor(private gridService: GridService, private http: HttpClient) {}
 
   ngOnInit() {
     this.getGrid();
@@ -34,7 +33,7 @@ export class TestComponent implements OnInit {
       }
     });
   }
-  
+
   getCellClass(cell: number): string {
     if (cell === 9) {
       return 'textured-nine';
@@ -43,6 +42,16 @@ export class TestComponent implements OnInit {
     }
     return '';
   }
-  
-}
 
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    this.sendKeyToServer(event.key);
+  }
+
+  sendKeyToServer(key: string) {
+    this.http.post('http://localhost:5002/api/grid', { key })
+      .subscribe(response => {
+        console.log('Key sent to server:', response);
+      });
+  }
+}

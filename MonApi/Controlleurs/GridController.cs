@@ -15,6 +15,18 @@ namespace MonApi.Controllers
             var gridData = gameGrid.GetGrid();
             return Ok(gridData); 
         }
+
+        [HttpPost]
+        public IActionResult ReceiveKey([FromBody] KeyInput input)
+        {
+            // Traitez la touche reçue ici
+            Console.WriteLine($"Key received: {input.Key}");
+            return Ok(input);
+        }
+    }
+    public class KeyInput
+    {
+        public string Key { get; set; }
     }
 }
 
