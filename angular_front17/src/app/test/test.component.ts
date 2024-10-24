@@ -44,8 +44,9 @@ export class TestComponent implements OnInit {
   }
 
   @HostListener('window:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    this.sendKeyToServer(event.key);
+  async handleKeyboardEvent(event: KeyboardEvent) {
+    await this.sendKeyToServer(event.key);
+    this.getGrid();
   }
 
   sendKeyToServer(key: string) {
