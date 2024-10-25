@@ -44,14 +44,14 @@ export class TestComponent implements OnInit {
   }
 
   @HostListener('window:keydown', ['$event'])
-  async handleKeyboardEvent(event: KeyboardEvent) {
-    await this.sendKeyToServer(event.key);
-    this.getGrid();
+  handleKeyboardEvent(event: KeyboardEvent) {
+    this.sendKeyToServer(event.key);
   }
 
   sendKeyToServer(key: string) {
     this.http.post('http://localhost:5002/api/grid', { key })
       .subscribe(response => {
+        this.getGrid();
         console.log('Key sent to server:', response);
       });
   }

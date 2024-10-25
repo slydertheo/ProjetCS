@@ -31,46 +31,44 @@ namespace SnakeMouvement
 
         public void MoveSnake()
         {
+            // Récupère la position actuelle de la tête
+            Position head = BodyParts[0];
+            Position newHead = head;
+
+            // Calcule la nouvelle position de la tête en fonction de la direction
+            switch (Direction)
+            {
+                case 'U': newHead = new Position(head.X, head.Y - 1); break; // Haut 
+                case 'D': newHead = new Position(head.X, head.Y + 1); break; // Bas
+                case 'L': newHead = new Position(head.X - 1, head.Y); break; // Gauche
+                case 'R': newHead = new Position(head.X + 1, head.Y); break; // Droite
+            }
+
+            // Vérifie si la nouvelle position est déjà occupée par le corps du serpent
+            foreach (var part in BodyParts)
+            {
+                if (part.X == newHead.X && part.Y == newHead.Y)
+                {
+                    Console.WriteLine("Collision détectée avec le corps du serpent !");
+                    return; // Arrête le mouvement si collision détectée
+                }
+            }
+
             // Met à jour l'ancienne position de la queue
             Position tail = BodyParts[BodyParts.Count - 1];
             _grid.UpdateCell(tail.X, tail.Y, 0); // Efface l'ancienne position de la queue
 
-            // Met à jour les positions de toutes les parties du corps
+            // Décale chaque partie du corps vers la position de la précédente
             for (int i = BodyParts.Count - 1; i > 0; i--)
             {
-                BodyParts[i] = BodyParts[i - 1]; // Décale chaque partie du corps vers la position de la précédente
+                BodyParts[i] = BodyParts[i - 1];
             }
 
-            // Mise à jour de la position de la tête
-            Position head = BodyParts[0];
-            switch (Direction)
-            {
-                case 'U': BodyParts[0] = new Position(head.X, head.Y - 1); break; // Haut 
-                case 'D': BodyParts[0] = new Position(head.X, head.Y + 1); break; // Bas
-                case 'L': BodyParts[0] = new Position(head.X - 1, head.Y); break; // Gauche
-                case 'R': BodyParts[0] = new Position(head.X + 1, head.Y); break; // Droite
-            }
-
-            // Met à jour la grille avec la nouvelle position de la tête
-            _grid.UpdateCell(BodyParts[0].X, BodyParts[0].Y, 1);
+            // Met à jour la position de la tête
+            BodyParts[0] = newHead;
+            _grid.UpdateCell(newHead.X, newHead.Y, 1); // Met à jour la grille avec la nouvelle position de la tête
         }
 
-        public void PrintGrid()
-        {
-            _grid.ClearGrid(); // Nettoie la grille d'abord
-
-            // Met à jour la grille avec toutes les positions du serpent
-            foreach (var part in BodyParts)
-            {
-                _grid.UpdateCell(part.X, part.Y, 1); // Met à jour chaque partie du corps
-            }
-
-            // Affiche la grille
-            foreach (var row in _grid.GetGrid())
-            {
-                Console.WriteLine(string.Join(" ", row));
-            }
-        }
     }
 
     public class Position
