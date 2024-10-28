@@ -12,7 +12,7 @@ namespace MonApi.Controllers
     {
         // Instance statique pour maintenir l'état du jeu
         private static PlayGrid gameGrid = new PlayGrid(30, 30);
-        private static Snake snake = new Snake(gameGrid, 15, 15, 5); // Utilisation de la classe Snake
+        private static Snake snake = new Snake(gameGrid, 15, 15, 10); // Utilisation de la classe Snake
         private static char currentDirection = 'U'; // Initialiser la direction vers le haut
 
         [HttpGet]
@@ -26,8 +26,6 @@ namespace MonApi.Controllers
         [HttpPost]
         public IActionResult ReceiveKey([FromBody] KeyInput input)
         {
-            // Traiter la touche reçue et déplacer le serpent
-            Console.WriteLine($"Key received: {input.Key}");
 
             // Modifier la direction selon la touche reçue (z, q, s, d)
             switch (input.Key.ToLower())

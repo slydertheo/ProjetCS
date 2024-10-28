@@ -50,8 +50,16 @@ namespace SnakeMouvement
                 if (part.X == newHead.X && part.Y == newHead.Y)
                 {
                     Console.WriteLine("Collision détectée avec le corps du serpent !");
+                    _grid.ClearGrid();
                     return; // Arrête le mouvement si collision détectée
                 }
+            }
+
+            //Vérifie si le serpent est en colision avce un mur
+            if (_grid.GetGrid()[newHead.X][newHead.Y] == 9){
+                Console.WriteLine("Collision détectée avec le mur !");
+                _grid.ClearGrid();
+                return;
             }
 
             // Met à jour l'ancienne position de la queue

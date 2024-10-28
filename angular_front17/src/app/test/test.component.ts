@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { GridService } from '../grid.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -10,8 +10,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./test.component.css'],
   imports: [CommonModule]
 })
-export class TestComponent implements OnInit {
+export class TestComponent implements OnInit, OnDestroy {
   grid: number[][] = [];
+  currentKey: string = 'r';
+  intervalId: any;
+  hasStartedSending = false;
 
   constructor(private gridService: GridService, private http: HttpClient) {}
 
@@ -45,7 +48,19 @@ export class TestComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    this.sendKeyToServer(event.key);
+    if (event.key !== this.currentKey) {
+      this.currentKey = event.key;
+    }
+    if (!this.hasStartedSending) {
+      this.startSendingKey();
+      this.hasStartedSending = true;
+    }
+  }
+
+  startSendingKey() {
+    this.intervalId = setInterval(() => {
+      this.sendKeyToServer(this.currentKey);
+    }, 500); // Envoie toutes les 0.5 secondes
   }
 
   sendKeyToServer(key: string) {
@@ -54,5 +69,11 @@ export class TestComponent implements OnInit {
         this.getGrid();
         console.log('Key sent to server:', response);
       });
+  }
+
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 }
