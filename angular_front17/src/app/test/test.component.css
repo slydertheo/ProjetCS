@@ -2,38 +2,43 @@
     display: flex;
     justify-content: center;
   }
-  
+
   .grid {
     display: flex;
     flex-direction: column;
     width: 900px;
     height: 900px;
+    margin: 3%;
+    background-color: #000; /* Couleur de fond pour l'extérieur de la grille */
+    border: 2px solid #00FF00; /* Bordure épaisse pour l'encadrement de la carte */
+    box-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00; /* Effet d'ombre pour un style vintage */
   }
-  
+
   .grid-row {
     display: flex;
     width: 900px;
     height: 30px;
   }
-  
+
   .grid-cell {
     text-align: center;
     align-content: center;
     width: 30px;
     height: 30px;
   }
-  
+
   .textured-nine {
-    background-image: url('https://cdn-icons-png.flaticon.com/512/698/698684.png'); 
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    color: white;
+    background-color: #333; /* Gris sombre pour les bordures */
+    border: 1px solid #222; /* Bordure légèrement plus foncée pour l'effet de mur */
+    box-shadow: inset 0 0 5px #111; /* Effet d'ombre interne pour donner du relief */
   }
   .textured-zero {
-    background-image: url('https://img.freepik.com/vecteurs-libre/herbe-texturee-sans-soudure-motif-herbe-naturelle_172107-1308.jpg'); 
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    color: white;
+    background-color: #000; /* Fond noir */
+    border: 1px solid #333; /* Bordure légèrement plus claire */
   }
-  
-  
+  .textured-one{
+    background-color: #ae00ff; /* Vert classique pour le serpent */
+    border: 1px solid #000; /* Bordure noire pour un effet pixelisé */
+    box-shadow: inset -1px -1px 0 #007700, inset 1px 1px 0 #ae00ff;
+  }
+

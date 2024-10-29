@@ -40,8 +40,12 @@ export class TestComponent implements OnInit, OnDestroy {
   getCellClass(cell: number): string {
     if (cell === 9) {
       return 'textured-nine';
-    } else if (cell === 0) {
+    }
+    else if (cell === 0) {
       return 'textured-zero';
+    }
+    else if (cell === 1) {
+      return 'textured-one' ;
     }
     return '';
   }

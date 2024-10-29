@@ -29,56 +29,44 @@ namespace SnakeMouvement
             Direction = newDirection;
         }
 
-        public void BodyCollision()
-        {
-            foreach (var part in BodyParts)
-            {
-                if (part.X == newHead.X && part.Y == newHead.Y)
-                {
-                    return true;
-                }
-            }
-        }
         public void MoveSnake()
         {
-            // Récupère la position actuelle de la tête
             Position head = BodyParts[0];
             Position newHead = head;
 
-            // Calcule la nouvelle position de la tête en fonction de la direction
             switch (Direction)
             {
-                case 'U': newHead = new Position(head.X, head.Y - 1); break; // Haut 
-                case 'D': newHead = new Position(head.X, head.Y + 1); break; // Bas
-                case 'L': newHead = new Position(head.X - 1, head.Y); break; // Gauche
-                case 'R': newHead = new Position(head.X + 1, head.Y); break; // Droite
+                case 'U': newHead = new Position(head.X, head.Y - 1); break;
+                case 'D': newHead = new Position(head.X, head.Y + 1); break;
+                case 'L': newHead = new Position(head.X - 1, head.Y); break;
+                case 'R': newHead = new Position(head.X + 1, head.Y); break;
             }
 
-            // Vérifie si la nouvelle position est déjà occupée par le corps du serpent
-            
-            //Vérifie si le serpent est en colision avce un mur
-            if (_grid.GetGrid()[newHead.X][newHead.Y] == 9 || BodyCollision()){
+            if (BodyParts.Any(part => part.X == newHead.X && part.Y == newHead.Y))
+            {
+                Console.WriteLine("Collision détectée avec le corps du serpent !");
+                _grid.ClearGrid();
+                return;
+            }
+            else if (_grid.GetGrid()[newHead.X][newHead.Y] == 9)
+            {
                 Console.WriteLine("Collision détectée avec le mur !");
                 _grid.ClearGrid();
                 return;
             }
-            else
-            {
-               // Met à jour l'ancienne position de la queue
-            Position tail = BodyParts[BodyParts.Count - 1];
-            _grid.UpdateCell(tail.X, tail.Y, 0); // Efface l'ancienne position de la queue
+            else{
+                Position tail = BodyParts[BodyParts.Count - 1];
+                _grid.UpdateCell(tail.X, tail.Y, 0);
 
-            // Décale chaque partie du corps vers la position de la précédente
-            for (int i = BodyParts.Count - 1; i > 0; i--)
-            {
-                BodyParts[i] = BodyParts[i - 1];
-            }
+                for (int i = BodyParts.Count - 1; i > 0; i--)
+                {
+                    BodyParts[i] = BodyParts[i - 1];
+                }
 
-            // Met à jour la position de la tête
-            BodyParts[0] = newHead;
-            _grid.UpdateCell(newHead.X, newHead.Y, 1); // Met à jour la grille avec la nouvelle position de la tête
-        } 
+                BodyParts[0] = newHead;
+                _grid.UpdateCell(newHead.X, newHead.Y, 1);
             }
+        }
     }
 
     public class Position
