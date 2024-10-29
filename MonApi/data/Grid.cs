@@ -6,27 +6,32 @@ namespace Grid
 {
     public class PlayGrid
     {
-        public List<List<int>> Grid { get; set; }
+        public List<List<int>> Grid { get; private set; }
+        private Random random = new Random();
 
         public PlayGrid(int rows, int columns)
         {
             Grid = new List<List<int>>(rows);
 
-            List<int> FirstRow = new List<int>(Enumerable.Repeat(9, columns));
-            Grid.Add(FirstRow);
+            // Initialisation de la première ligne
+            List<int> firstRow = new List<int>(Enumerable.Repeat(9, columns));
+            Grid.Add(firstRow);
 
+            // Initialisation des lignes intermédiaires
             for (int i = 0; i < rows - 2; i++)
             {
                 List<int> row = new List<int>(new int[columns]);
-                row[0] = 9;
-                row[columns - 1] = 9;
+                row[0] = 9; // Mur à gauche
+                row[columns - 1] = 9; // Mur à droite
                 Grid.Add(row);
             }
 
-            List<int> LastRow = new List<int>(Enumerable.Repeat(9, columns));
-            Grid.Add(LastRow);
+            // Initialisation de la dernière ligne
+            List<int> lastRow = new List<int>(Enumerable.Repeat(9, columns));
+            Grid.Add(lastRow);
         }
 
+        // Récupérer la grille actuelle
         public List<List<int>> GetGrid()
         {
             return Grid;
@@ -45,6 +50,29 @@ namespace Grid
                 {
                     Grid[i][j] = 0; // Réinitialise toutes les cellules à 0
                 }
+            }
+        }
+
+        // Vérifie si une pomme existe
+        public bool HasApple()
+        {
+            return Grid.Any(row => row.Contains(2));
+        }
+
+        // Génère une pomme à une position aléatoire
+        public void GenerateApple()
+        {
+            if (!HasApple())
+            {
+                int x, y;
+                do
+                {
+                    x = random.Next(1, Grid[0].Count - 1);
+                    y = random.Next(1, Grid.Count - 1);
+                }
+                while (Grid[y][x] != 0); // Continue tant que la case est occupée
+
+                Grid[y][x] = 2; // Place la pomme (représentée par le chiffre 2)
             }
         }
 
