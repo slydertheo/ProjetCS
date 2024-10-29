@@ -29,6 +29,16 @@ namespace SnakeMouvement
             Direction = newDirection;
         }
 
+        public void BodyCollision()
+        {
+            foreach (var part in BodyParts)
+            {
+                if (part.X == newHead.X && part.Y == newHead.Y)
+                {
+                    return true;
+                }
+            }
+        }
         public void MoveSnake()
         {
             // Récupère la position actuelle de la tête
@@ -45,24 +55,16 @@ namespace SnakeMouvement
             }
 
             // Vérifie si la nouvelle position est déjà occupée par le corps du serpent
-            foreach (var part in BodyParts)
-            {
-                if (part.X == newHead.X && part.Y == newHead.Y)
-                {
-                    Console.WriteLine("Collision détectée avec le corps du serpent !");
-                    _grid.ClearGrid();
-                    return; // Arrête le mouvement si collision détectée
-                }
-            }
-
+            
             //Vérifie si le serpent est en colision avce un mur
-            if (_grid.GetGrid()[newHead.X][newHead.Y] == 9){
+            if (_grid.GetGrid()[newHead.X][newHead.Y] == 9 || BodyCollision()){
                 Console.WriteLine("Collision détectée avec le mur !");
                 _grid.ClearGrid();
                 return;
             }
-
-            // Met à jour l'ancienne position de la queue
+            else
+            {
+               // Met à jour l'ancienne position de la queue
             Position tail = BodyParts[BodyParts.Count - 1];
             _grid.UpdateCell(tail.X, tail.Y, 0); // Efface l'ancienne position de la queue
 
@@ -75,8 +77,8 @@ namespace SnakeMouvement
             // Met à jour la position de la tête
             BodyParts[0] = newHead;
             _grid.UpdateCell(newHead.X, newHead.Y, 1); // Met à jour la grille avec la nouvelle position de la tête
-        }
-
+        } 
+            }
     }
 
     public class Position
