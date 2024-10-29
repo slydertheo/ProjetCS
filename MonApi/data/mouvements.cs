@@ -29,16 +29,16 @@ namespace SnakeMouvement
             Direction = newDirection;
         }
 
-        public void BodyCollision()
-        {
-            foreach (var part in BodyParts)
-            {
-                if (part.X == newHead.X && part.Y == newHead.Y)
-                {
-                    return true;
-                }
-            }
-        }
+        // public void BodyCollision()
+        // {
+        //     foreach (var part in BodyParts)
+        //     {
+        //         if (part.X == newHead.X && part.Y == newHead.Y)
+        //         {
+        //             return true;
+        //         }
+        //     }
+        // }
         public void MoveSnake()
         {
             // Récupère la position actuelle de la tête
@@ -57,7 +57,7 @@ namespace SnakeMouvement
             // Vérifie si la nouvelle position est déjà occupée par le corps du serpent
             
             //Vérifie si le serpent est en colision avce un mur
-            if (_grid.GetGrid()[newHead.X][newHead.Y] == 9 || BodyCollision()){
+            if (_grid.GetGrid()[newHead.X][newHead.Y] == 9 ){
                 Console.WriteLine("Collision détectée avec le mur !");
                 _grid.ClearGrid();
                 return;

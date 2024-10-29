@@ -2,38 +2,47 @@
     display: flex;
     justify-content: center;
   }
-  
+
   .grid {
     display: flex;
     flex-direction: column;
     width: 900px;
     height: 900px;
   }
-  
+
   .grid-row {
     display: flex;
     width: 900px;
     height: 30px;
   }
-  
+
   .grid-cell {
     text-align: center;
     align-content: center;
     width: 30px;
     height: 30px;
   }
-  
+
   .textured-nine {
-    background-image: url('https://cdn-icons-png.flaticon.com/512/698/698684.png'); 
-    background-size: cover; 
-    background-repeat: no-repeat; 
+    background-image: url('https://cdn-icons-png.flaticon.com/512/698/698684.png');
+    background-size: cover;
+    background-repeat: no-repeat;
     color: white;
   }
   .textured-zero {
-    background-image: url('https://img.freepik.com/vecteurs-libre/herbe-texturee-sans-soudure-motif-herbe-naturelle_172107-1308.jpg'); 
-    background-size: cover; 
-    background-repeat: no-repeat; 
+    background-image: url('https://img.freepik.com/vecteurs-libre/herbe-texturee-sans-soudure-motif-herbe-naturelle_172107-1308.jpg');
+    background-repeat: no-repeat;
     color: white;
   }
-  
-  
+  .textured-height {
+    background-color: #ff0000; /* Couleur de fond rouge vif */
+    border: 1px solid #ff3030; /* Bordure pour un effet pétant */
+    box-shadow: 0 0 15px rgba(255, 48, 48, 0.8), /* Ombre extérieure */
+                inset -1px -1px 0 #ff3030, /* Ombre intérieure en haut à gauche */
+                inset 1px 1px 0 #ff3030, /* Ombre intérieure en bas à droite */
+                inset 0 0 5px rgba(255, 255, 255, 0.5); /* Lueur intérieure pour le brillant */
+}
+
+
+
+

@@ -42,9 +42,12 @@ export class TestComponent implements OnInit, OnDestroy {
       return 'textured-nine';
     } else if (cell === 0) {
       return 'textured-zero';
+    } else if (cell === 2) { // Ajouté pour la pomme
+      return 'textured-height';
     }
     return '';
   }
+
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -77,3 +80,5 @@ export class TestComponent implements OnInit, OnDestroy {
     }
   }
 }
+
+

@@ -1,10 +1,11 @@
 <div class="grid-container">
   <div class="grid">
     <div *ngFor="let row of grid" class="grid-row">
-      <div *ngFor="let cell of row" class="grid-cell" 
+      <div *ngFor="let cell of row" class="grid-cell"
            [ngClass]="getCellClass(cell)">
+           <span *ngIf="cell === 2" class="pomme-annees-2000"></span>
+
       </div>
     </div>
   </div>
 </div>
-

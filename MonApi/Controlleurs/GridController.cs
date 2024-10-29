@@ -14,6 +14,10 @@ namespace MonApi.Controllers
         private static PlayGrid gameGrid = new PlayGrid(30, 30);
         private static Snake snake = new Snake(gameGrid, 15, 15, 10); // Utilisation de la classe Snake
         private static char currentDirection = 'U'; // Initialiser la direction vers le haut
+        public GridController()
+        {
+            gameGrid.GenerateApple();
+        }
 
         [HttpGet]
         public IActionResult GetGrid()
