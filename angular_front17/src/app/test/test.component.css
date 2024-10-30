@@ -1,15 +1,14 @@
 .grid-container {
+    height:max-content;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
-
-
   .grid {
     display: flex;
     flex-direction: column;
-    width: 900px;
-    height: 900px;
-    margin: 3%;
+    width: 675px;
+    height: 675px;
     background-color: #000; /* Couleur de fond pour l'extérieur de la grille */
     border: 2px solid #00FF00; /* Bordure épaisse pour l'encadrement de la carte */
     box-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00; /* Effet d'ombre pour un style vintage */
@@ -18,16 +17,16 @@
 
   .grid-row {
     display: flex;
-    width: 900px;
-    height: 30px;
+    width: 675px;
+    height: 45px;
   }
 
 
   .grid-cell {
     text-align: center;
     align-content: center;
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
   }
 
 

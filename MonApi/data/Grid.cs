@@ -56,7 +56,7 @@ namespace Grid
         // Vérifie si une pomme existe
         public bool HasApple()
         {
-            return Grid.Any(row => row.Contains(2));
+            return Grid.Any(row => row.Contains(8));
         }
 
         // Génère une pomme à une position aléatoire
@@ -72,7 +72,8 @@ namespace Grid
                 }
                 while (Grid[y][x] != 0); // Continue tant que la case est occupée
 
-                Grid[y][x] = 2; // Place la pomme (représentée par le chiffre 2)
+                Console.WriteLine($"pomme en X: {x}, Y: {y}");
+                this.UpdateCell(x, y, 8); // Place la pomme (représentée par le chiffre 8)
             }
         }
 

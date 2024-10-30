@@ -42,30 +42,37 @@ namespace SnakeMouvement
                 case 'R': newHead = new Position(head.X + 1, head.Y); break;
             }
 
-            if (BodyParts.Any(part => part.X == newHead.X && part.Y == newHead.Y))
-            {
-                Console.WriteLine("Collision détectée avec le corps du serpent !");
-                _grid.ClearGrid();
-                return;
-            }
-            else if (_grid.GetGrid()[newHead.X][newHead.Y] == 9)
+            if (newHead.Y == 0 || newHead.Y == _grid.GetGrid().Count - 1 || newHead.X == 0 || newHead.X == _grid.GetGrid()[0].Count - 1)
             {
                 Console.WriteLine("Collision détectée avec le mur !");
                 _grid.ClearGrid();
                 return;
             }
-            else{
-                Position tail = BodyParts[BodyParts.Count - 1];
-                _grid.UpdateCell(tail.X, tail.Y, 0);
-
-                for (int i = BodyParts.Count - 1; i > 0; i--)
-                {
-                    BodyParts[i] = BodyParts[i - 1];
-                }
-
-                BodyParts[0] = newHead;
-                _grid.UpdateCell(newHead.X, newHead.Y, 1);
+            else if (_grid.GetGrid()[newHead.Y][newHead.X] == 1) // Vérifie si une pomme est mangée
+            {
+                Console.WriteLine("Collision détectée avec le serpent !");
+                _grid.ClearGrid();
+                return; // Ne pas mettre à jour la queue
             }
+            else if (_grid.GetGrid()[newHead.Y][newHead.X] == 8) // Vérifie si une pomme est mangée
+            {
+                Console.WriteLine("Pomme détectée à cette position.");
+                BodyParts.Insert(0, newHead);
+                _grid.UpdateCell(newHead.X, newHead.Y, 1); // Met à jour la cellule de la tête
+                Console.WriteLine("GRANDIT");
+                return; // Ne pas mettre à jour la queue
+            }
+
+            Position tail = BodyParts[BodyParts.Count - 1];
+            _grid.UpdateCell(tail.X, tail.Y, 0); // Efface l'ancienne position de la queue
+
+            for (int i = BodyParts.Count - 1; i > 0; i--)
+            {
+                BodyParts[i] = BodyParts[i - 1];
+            }
+            
+            BodyParts[0] = newHead;
+            _grid.UpdateCell(newHead.X, newHead.Y, 1); // Met à jour la grille avec la nouvelle position de la tête
         }
     }
 

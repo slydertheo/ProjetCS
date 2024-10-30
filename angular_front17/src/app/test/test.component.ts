@@ -43,7 +43,8 @@ export class TestComponent implements OnInit, OnDestroy {
     }
     else if (cell === 0) {
       return 'textured-zero';
-    } else if (cell === 2) { // Ajouté pour la pomme
+    }
+    else if (cell === 8) {
       return 'textured-height';
     }
     else if (cell === 1) {
@@ -67,7 +68,7 @@ export class TestComponent implements OnInit, OnDestroy {
   startSendingKey() {
     this.intervalId = setInterval(() => {
       this.sendKeyToServer(this.currentKey);
-    }, 500); // Envoie toutes les 0.5 secondes
+    }, 200); // Envoie toutes les 0.5 secondes
   }
 
   sendKeyToServer(key: string) {

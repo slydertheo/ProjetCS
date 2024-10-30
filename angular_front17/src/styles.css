@@ -1,8 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body {
+html, body {
+  height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: black;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+app-root > app-test {
+  align-self: center; /* Centrage horizontal de l'élément dans app-root */
+  height: max-content; /* Prend la hauteur en fonction de son contenu */
 }
