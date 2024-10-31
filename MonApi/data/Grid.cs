@@ -56,7 +56,7 @@ namespace Grid
         // Vérifie si une pomme existe
         public bool HasApple()
         {
-            return Grid.Any(row => row.Contains(8));
+            return Grid.Sum(row => row.Count(cell => cell == 8)) >= 3;
         }
 
         // Génère une pomme à une position aléatoire
@@ -76,6 +76,23 @@ namespace Grid
                 this.UpdateCell(x, y, 8); // Place la pomme (représentée par le chiffre 8)
             }
         }
+        public bool IsDefeated()
+        {
+            return !Grid.Any(row => row.Contains(1)); // Par exemple, le joueur est "défait" s'il n'y a plus de cellule avec la valeur 1
+        }
+
+        public object CheckDefeat()
+        {
+            if (IsDefeated())
+            {
+                return 1;
+            }
+            else
+            {
+                return GetGrid();
+            }
+        }
+
 
         public void PrintGrid()
         {

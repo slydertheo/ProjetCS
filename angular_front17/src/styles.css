@@ -16,7 +16,12 @@ app-root {
   height: 100vh;
 }
 
-app-root > app-test {
-  align-self: center; /* Centrage horizontal de l'élément dans app-root */
-  height: max-content; /* Prend la hauteur en fonction de son contenu */
+.map{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { GridService } from '../grid.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { ButtonGameOver } from'../game-over/game-over.component';
 
 @Component({
   selector: 'app-test',
@@ -10,13 +11,16 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./test.component.css'],
   imports: [CommonModule]
 })
-export class TestComponent implements OnInit, OnDestroy {
+export class TestComponent implements OnInit, OnDestroy{
   grid: number[][] = [];
   currentKey: string = 'r';
   intervalId: any;
   hasStartedSending = false;
+  gameover: ButtonGameOver;
 
-  constructor(private gridService: GridService, private http: HttpClient) {}
+  constructor(private gridService: GridService, private http: HttpClient) {
+    this.gameover = new ButtonGameOver();
+  }
 
   ngOnInit() {
     this.getGrid();
@@ -26,7 +30,6 @@ export class TestComponent implements OnInit, OnDestroy {
     this.gridService.getGrid().subscribe({
       next: (data) => {
         this.grid = data;
-        console.log(this.grid);
       },
       error: (err) => {
         console.error('Error fetching grid:', err);
@@ -74,8 +77,16 @@ export class TestComponent implements OnInit, OnDestroy {
   sendKeyToServer(key: string) {
     this.http.post('http://localhost:5002/api/grid', { key })
       .subscribe(response => {
-        this.getGrid();
-        console.log('Key sent to server:', response);
+        if (response == 1){
+          console.log("nulllll");
+          this.gameover.openDialog();
+          if (this.intervalId) {
+            clearInterval(this.intervalId);
+          }
+        }
+        else{
+          this.getGrid();
+        }
       });
   }
 

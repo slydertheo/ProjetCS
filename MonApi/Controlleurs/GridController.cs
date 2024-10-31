@@ -12,7 +12,7 @@ namespace MonApi.Controllers
     {
         // Instance statique pour maintenir l'état du jeu
         private static PlayGrid gameGrid = new PlayGrid(15, 15);
-        private static Snake snake = new Snake(gameGrid, 6, 6, 5); // Utilisation de la classe Snake
+        private static Snake snake = new Snake(gameGrid, 6, 6, 3); // Utilisation de la classe Snake
         private static char currentDirection = 'R'; // Initialiser la direction vers le haut
         public GridController()
         {
@@ -54,7 +54,18 @@ namespace MonApi.Controllers
             snake.MoveSnake();
 
             // Renvoyer la grille mise à jour
-            return Ok(gameGrid.GetGrid());
+            return Ok(gameGrid.CheckDefeat());
+        }
+
+        [HttpPost("restart")]
+
+        public IActionResult restart()
+        {
+            gameGrid = new PlayGrid(15,15);
+            snake = new Snake(gameGrid, 6, 6, 3);
+            currentDirection = 'R';
+            gameGrid.GenerateApple();
+            return Ok("Game restarted");
         }
     }
 
