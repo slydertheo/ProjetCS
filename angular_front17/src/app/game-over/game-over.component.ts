@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
+import { GridService } from '../grid.service';
 import {
   MatDialog,
   MatDialogActions,
@@ -8,8 +9,6 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { response } from 'express';
-import { error } from 'console';
 
 /**
  * @title Dialog elements
@@ -41,12 +40,14 @@ export class ButtonGameOver {
 export class GameOverMessage {
 
   readonly http = inject(HttpClient);
+  readonly GridService = inject(GridService);
 
   restart(){
     console.log('try to restart');
     this.http.post('http://localhost:5002/api/grid/restart',{}, { responseType: 'text' } )
     .subscribe({
       next: (response) => {
+        window.location.reload();
         console.log("Game restarted", response);
       },
       error: (error) => {
